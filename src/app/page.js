@@ -5,8 +5,10 @@ import parse from "./snarkdown";
 import { Pagination } from "./components/Pagination";
 
 
-export default async function Home() {
-  const {data: games, pagination} = await getGames({page: 1})
+export default async function Home({searchParams}) {
+  const {page} = searchParams
+  console.log(searchParams)
+  const {data: games, pagination} = await getGames({page: +page})
 
   return (
     <main className="flex min-h-screen flex-col items-center p-24">
